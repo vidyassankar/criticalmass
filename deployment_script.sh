@@ -9,12 +9,13 @@ ECS_SERVICE="flask-ecs-service"
 ALB_TARGET_GROUP_ARN="arn:aws:elasticloadbalancing:us-east-2:770715862775:targetgroup/my-target-group/f556760d6d79e713"
 ALB_DNS_NAME="flask-alb-2041433718.us-east-2.elb.amazonaws.com"
 ECS_CLUSTER="flask-ecs-cluster"
+AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)
 
 echo "***************Building  Docker image**********"
 docker build -t $DOCKER_IMAGE:$DOCKER_TAG .
 
 echo "************Authenticating Docker to ECR****************"
-aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REPOSITORY
+aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
 
 echo "****************Tagging the Docker image with the ECR repository URL******************"
 ECR_REPOSITORY_URL=$(aws ecr describe-repositories --repository-names $ECR_REPOSITORY --region $AWS_REGION --query "repositories[0].repositoryUri" --output text)
