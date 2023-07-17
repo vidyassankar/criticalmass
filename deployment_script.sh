@@ -6,7 +6,6 @@ ECR_REPOSITORY="flask-ecr-repo"
 DOCKER_IMAGE="flaskapp"
 DOCKER_TAG="latest"
 ECS_SERVICE="flask-ecs-service"
-ALB_TARGET_GROUP_ARN="arn:aws:elasticloadbalancing:us-east-2:770715862775:targetgroup/my-target-group/f556760d6d79e713"
 ALB_DNS_NAME="flask-alb-2041433718.us-east-2.elb.amazonaws.com"
 ECS_CLUSTER="flask-ecs-cluster"
 AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)
