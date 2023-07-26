@@ -6,7 +6,7 @@ ECR_REPOSITORY="flask-ecr-repo"
 DOCKER_IMAGE="flaskapp"
 DOCKER_TAG="latest"
 ECS_SERVICE="flask-ecs-service"
-ALB_DNS_NAME="flask-alb-2041433718.us-east-2.elb.amazonaws.com"
+ALB_DNS_NAME=""
 ECS_CLUSTER="flask-ecs-cluster"
 AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)
 
